@@ -1,5 +1,5 @@
 import {useState} from "react"
-import CalcValues from "../CalcValue"
+import {CalcValues, LastTwoCalcValues} from "../CalcValue"
 import "./calculator.css"
 
 const Claculator = () => {
@@ -7,6 +7,7 @@ const Claculator = () => {
     const [answer, setAnswer] = useState("")
     const [power, setPower] = useState("ON")
     const [disable, setDisable] = useState(false)
+
 
     const handleClick = (e:any) => {
         setCalc(calc.concat(e.target.value))
@@ -44,36 +45,49 @@ const Claculator = () => {
             </div>
             <div className="calc-btn">
                 <input 
-                type="button"
-                className="power" 
-                value={power} 
-                onClick={controlPower}
+                 type="button"
+                 className="power" 
+                 value={power} 
+                 onClick={controlPower}
                 />
 
                 <input
-                type="button"
-                className="ac" 
-                value="AC" 
-                onClick={clearValue}
-                disabled={disable}
+                 type="button"
+                 className="ac" 
+                 value="AC" 
+                 onClick={clearValue}
+                 disabled={disable}
                 />
                 {
-                CalcValues && CalcValues.map((val) => (
+                    CalcValues && CalcValues.map((val) => (
+                        <input 
+                        type="button"
+                        value={val.value} 
+                        key={val.id} 
+                        onClick={handleClick}
+                        disabled={disable}
+                        />
+                    ))
+                }
+            </div>
+            <div className="last-three-btns">
+            {
+                LastTwoCalcValues && LastTwoCalcValues.map((val) => (
                     <input 
-                    type="button"
-                    value={val.value} 
-                    key={val.id} 
-                    onClick={handleClick}
-                    disabled={disable}
+                        type="button"
+                        value={val.value} 
+                        key={val.id} 
+                        onClick={handleClick}
+                        disabled={disable}
                     />
                 ))
-                }
+            }
                 <input 
-                type="button"
-                value="="
-                className="equal-btn" 
-                onClick={evaluateCalc}
-                disabled={disable}
+                 type="button"
+                 value="="
+                 className="equal-btn" 
+                 onClick={evaluateCalc}
+                 disabled={disable}
                 />
             </div>
         </div>

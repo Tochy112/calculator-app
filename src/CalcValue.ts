@@ -18,8 +18,11 @@ const CalcValues:Values[] = [
     {id:12, value:2},
     {id:13, value:3},
     {id:14, value:"+"},
-    {id:15, value:"0"},
-    {id:15, value:"."},
 ]
 
-export default CalcValues
+const LastTwoCalcValues:Values[] = [
+    {id:1, value:"0"},
+    {id:2, value:"."},
+]
+
+export { CalcValues, LastTwoCalcValues }
